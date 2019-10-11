@@ -53,7 +53,7 @@ cc.Class({
     },
 
     continueSavedGame: function () {
-        cc.director.loadScene("Level");
+        cc.director.loadScene("Sudoku");
     },
 
     closeContinueWindow: function () {
@@ -65,6 +65,6 @@ cc.Class({
         window.Global.filledCandidates = [];
         window.Global.currentPuzzleId = -1;
         window.Global.currentLevel = customEventData;
-        cc.director.loadScene("Level");
+        cc.director.loadScene("Sudoku");
     }
 });

@@ -1,5 +1,5 @@
 window.Global = {
-    inited:false,
+    inited: false,
     currentLevel: "easy",
     puzzles: {easy: [], medium: [], hard: [], extreme: []},
     currentPuzzleId: -1,
