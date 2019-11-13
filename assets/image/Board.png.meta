@@ -1,6 +1,6 @@
 {
   "ver": "2.3.3",
-  "uuid": "4078a365-aee9-4abe-b2c4-90d70b2d2095",
+  "uuid": "48989e55-2bb5-4fcb-9df5-63752b30e06d",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
@@ -11,8 +11,8 @@
   "subMetas": {
     "Board": {
       "ver": "1.0.4",
-      "uuid": "ec9d69f4-5a7d-454e-a54a-8ce1f8e5cdcc",
-      "rawTextureUuid": "4078a365-aee9-4abe-b2c4-90d70b2d2095",
+      "uuid": "eb7ac322-1618-4e82-ba7f-6ec223aaf6fb",
+      "rawTextureUuid": "48989e55-2bb5-4fcb-9df5-63752b30e06d",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
