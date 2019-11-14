@@ -251,51 +251,19 @@ function initBoard(opts) {
  *  dynamically renders the board on the screen (into the DOM), based on board variable
  * -----------------------------------------------------------------*/
 function renderBoard() {
-    //log("renderBoard");
-    //log(board);
-    // var htmlString = "";
-    // for (var i = 0; i < boardSize * boardSize; i++) {
-    //     htmlString += renderBoardCell(board[i], i);
-    //
-    //     if ((i + 1) % boardSize === 0) {
-    //         htmlString += "<br>";
-    //     }
-    // }
-    //log(htmlString);
-    // _board.append(htmlString);
-
-    //save important board elements
-    // _boardInputs = _board.find("input");
-    // _boardInputCandidates = _board.find(".candidates");
+    
 }
 
 /* renderBoardCell
  * -----------------------------------------------------------------*/
 function renderBoardCell(boardCell, id) {
-    // var val = (boardCell.val === null) ? "" : boardCell.val;
-    // var candidates = boardCell.candidates || [];
-    // var candidatesString = buildCandidatesString(candidates);
-    // var maxlength = (boardSize < 10) ? " maxlength='1'" : "";
-    // return "<div class='sudoku-board-cell'>" +
-    //     //want to use type=number, but then have to prevent chrome scrolling and up down key behaviors..
-    //     "<input type='text' pattern='\\d*' novalidate id='input-" + id + "' value='" + val + "'" + maxlength + ">" +
-    //     "<div id='input-" + id + "-candidates' class='candidates'>" + candidatesString + "</div>" +
-    //     "</div>";
+
 }
 
 
 /* buildCandidatesString
  * -----------------------------------------------------------------*/
-// function buildCandidatesString(candidatesList) {
-//     var s = "";
-//     for (var i = 1; i < boardSize + 1; i++) {
-//         if (contains(candidatesList, i))
-//             s += "<div>" + i + "</div> ";
-//         else
-//             s += "<div>&nbsp;</div> ";
-//     }
-//     return s;
-// }
+
 
 
 /* updateUI
@@ -313,22 +281,7 @@ function renderBoardCell(boardCell, id) {
  *  updates the board with our latest values
  * -----------------------------------------------------------------*/
 function updateUIBoard(paintNew) {
-    //log("re painting every input on board..");
-    // _boardInputs
-    // 	.removeClass("highlight-val")
-    // 	.each(function(i,v){
-    // 		var $input = $(this);
-    // 		var newVal = board[i].val;
-    // 		//if(newVal && parseInt($input.val()) !== newVal) {
-    // 			$input.val(newVal);
-    // 			if(paintNew)
-    // 				$input.addClass("highlight-val");
-    // 		//}
-    // 		var $candidates = $input.siblings(".candidates");
-    // 		$candidates.html(buildCandidatesString(board[i].candidates));
-    //
-    // 	});
-    // cc.log(board);
+ 
 }
 
 
@@ -337,20 +290,7 @@ function updateUIBoard(paintNew) {
  *  updates ONE cell on the board with our latest values
  * -----------------------------------------------------------------*/
 function updateUIBoardCell(cellIndex, opts) {
-    // opts = opts || {};
-    //log("updateUIBoardCell: "+cellIndex);
-    //if(!(opts.mode && opts.mode === "only-candidates")){
-    // var newVal = board[cellIndex].val;
 
-    //_boardInputs.removeClass("highlight-val");
-
-    //shouldn't always add hightlight-val class
-    // $("#input-"+cellIndex)
-    // 	.val(newVal)
-    // 	.addClass("highlight-val");
-    //}
-    // $("#input-"+cellIndex+"-candidates")
-    // 	.html(buildCandidatesString(board[cellIndex].candidates));
 }
 
 /* uIBoardHighlightRemoveCandidate
@@ -416,15 +356,7 @@ function removeCandidatesFromCells(cells, candidates, dontRemove) {
 }
 
 function highLightCandidatesOnCells(candidates, cells) {
-    // for (var i = 0; i < cells.length; i++) {
-    //     var cellCandidates = board[cells[i]].candidates;
-    //
-    //     for (var j = 0; j < cellCandidates.length; j++) {
-    //         if (contains(candidates, cellCandidates[j]))
-    //             uIBoardHighlightCandidate(cells[i], cellCandidates[j]);
-    //     }
-    //
-    // }
+  
 }
 
 
@@ -1364,20 +1296,7 @@ var solveFn = function (i) {
 
         return false; //we're done!
 
-    } //else if (solveMode === SOLVE_MODE_STEP) {
-    //likely that we're updating twice if !candidatesShowing && !onlyUpdatedCandidates,
-    //but we can't tell if user just toggled candidatesShowing.. so have to do it here (again).
-    //if (effectedCells && effectedCells !== -1) {
-    // update candidates and/or new numbers
-    // remove highlights from last step
-    //_boardInputs.removeClass("highlight-val");
-    //$(".candidate--highlight").removeClass("candidate--highlight");
-    // update board with new effected cell(s) info
-    //for (var j = 0; j < effectedCells.length; j++) {
-    //    updateUIBoardCell(effectedCells[j]);
-    //}
-    //}
-    //}
+    } 
 
     nrSolveLoops++;
     var strat = strategies[i].fn;
@@ -1462,30 +1381,6 @@ var solveFn = function (i) {
 };
 
 
-/* keyboardMoveBoardFocus - puts focus on adjacent board cell
- * -----------------------------------------------------------------*/
-// function keyboardMoveBoardFocus(currentId, keyCode) {
-//     var newId = currentId;
-//     //right
-//     if (keyCode === 39)
-//         newId++;
-//     //left
-//     else if (keyCode === 37)
-//         newId--;
-//     //down
-//     else if (keyCode === 40)
-//         newId = newId + boardSize;
-//     //up
-//     else if (keyCode === 38)
-//         newId = newId - boardSize;
-//
-//     //out of bounds
-//     if (newId < 0 || newId > (boardSize * boardSize))
-//         return;
-//
-//     //focus input
-//     // $("#input-"+newId).focus();
-// }
 
 
 /* toggleCandidateOnCell - used for editingCandidates mode
@@ -1811,22 +1706,6 @@ function startNewPuzzle(o, cb) {
         visualEliminationOfCandidates();
     }
 }
-
-
-// _boardInputs.on("keyup", function(e){
-// var $this = $(this);
-// var id = parseInt($this.attr("id").replace("input-",""));
-// //allow keyboard movements
-// if(e.keyCode >=37 && e.keyCode <= 40){// || e.keyCode ===48){
-// 	keyboardMoveBoardFocus(id, e.keyCode);
-// }
-// });
-//listen on change because val is incorrect all the time on keyup, because have to filter out all other keys.
-// _boardInputs.on("change", function(){
-// var $this = $(this);
-// var id = parseInt($this.attr("id").replace("input-",""));
-// keyboardNumberInput($this, id);
-// });
 
 
 /**
