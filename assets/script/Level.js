@@ -208,6 +208,22 @@ cc.Class({
         this.hintBar.node.on("HintNext", this.onHintNext, this);
         this.hintBar.node.on("HintPrevious", this.onHintPrevious, this);
         this.hintBar.node.on("HintApply", this.onHintApply, this);
+// for (var levels = 0; levels < 50; levels++) {
+        //     Sudoku.startNewPuzzle(opts, this.onPuzzleAnswer.bind(this));
+        //     this.puzzle = Sudoku.getBoard();
+        //
+        //     var p = "{puzzle: '";
+        //     for (var l=0;l<this.puzzle.length;l++)
+        //         if (l > 0) {
+        //             p+=","+this.puzzle[l].val;
+        //         }
+        //         else{
+        //             p+=this.puzzle[l].val;
+        //         }
+        //
+        //     p+="', answer: '"+this.answer.toString()+"'}";
+        //     cc.log(p);
+        // }
 
         if (window.Global.currentPuzzleId < 0) {
             window.Global.currentPuzzleId = parseInt(Math.random() * window.Global.puzzles[window.Global.currentLevel].length);
@@ -243,22 +259,7 @@ cc.Class({
             this.answer[m] = parseInt(this.answer[m]);
         }
 
-        // for (var levels = 0; levels < 50; levels++) {
-        //     Sudoku.startNewPuzzle(opts, this.onPuzzleAnswer.bind(this));
-        //     this.puzzle = Sudoku.getBoard();
-        //
-        //     var p = "{puzzle: '";
-        //     for (var l=0;l<this.puzzle.length;l++)
-        //         if (l > 0) {
-        //             p+=","+this.puzzle[l].val;
-        //         }
-        //         else{
-        //             p+=this.puzzle[l].val;
-        //         }
-        //
-        //     p+="', answer: '"+this.answer.toString()+"'}";
-        //     cc.log(p);
-        // }
+        ////////////////////////////////////////////////////////////
 
         for (var i = 0; i < 9; i++) {
             for (var j = 0; j < 9; j++) {
@@ -313,46 +314,20 @@ cc.Class({
         this.hintBar.hideHint();
     },//
 
-    onHintNext: function () {
-        if (this.menuWindow.active)
-            return;
-        this.hintBar.hintNext();
-    },//
-
     onHintPrevious: function () {
         if (this.menuWindow.active)
             return;
         this.hintBar.hintPrevious();
     },//
 
-    onHintApply: function () {
+    onHintNext: function () {
         if (this.menuWindow.active)
             return;
+        this.hintBar.hintNext();
+    },//
 
-        if (this.hintBar.currentRequest == "Need Candidates") {
-            this.showCandidates();
-        }
-        else if (this.hintBar.currentRequest == "Fix Cells") {
-            this.fixWrongCells();
-        }
-        else if (this.hintBar.currentHint) {
-            if (this.hintBar.currentHint.result.val) {
-                Sudoku.setBoardCell(this.hintBar.currentHint.result.cell, this.hintBar.currentHint.result.val);
-                this.cells[this.hintBar.currentHint.result.cell].getComponent(Cell).candidates.active = false;
-                this.updateCells();
-                Sudoku.updateCandidates();
-                this.updateCandidatesAsSet(this.hintBar.currentHint.result.cell, this.hintBar.currentHint.result.val);
-            }
-            if (this.hintBar.currentHint.result.updateCells) {
-                Sudoku.removeCandidatesFromCells(this.hintBar.currentHint.result.updateCells, this.hintBar.currentHint.result.removeCandidates, false);
-                Sudoku.updateCandidates();
-                this.updateCandidatesAsReject(this.hintBar.currentHint.result.updateCells, this.hintBar.currentHint.result.removeCandidates);
-            }
-        }
-        this.panel.node.active = true;
-        this.hintBar.hintApply();
-        this.updateSave(this.checkFinished());
-    },
+
+    
 //////////////////////////////////////////////////////////////////////////////////////////////////
     onBoardFinished: function (o) {
         // cc.log(o.difficultyInfo);
@@ -435,6 +410,35 @@ cc.Class({
         this.clearEditPanel();
         this.updateSave(false);
     },//
+
+    onHintApply: function () {
+        if (this.menuWindow.active)
+            return;
+
+        if (this.hintBar.currentRequest == "Need Candidates") {
+            this.showCandidates();
+        }
+        else if (this.hintBar.currentRequest == "Fix Cells") {
+            this.fixWrongCells();
+        }
+        else if (this.hintBar.currentHint) {
+            if (this.hintBar.currentHint.result.val) {
+                Sudoku.setBoardCell(this.hintBar.currentHint.result.cell, this.hintBar.currentHint.result.val);
+                this.cells[this.hintBar.currentHint.result.cell].getComponent(Cell).candidates.active = false;
+                this.updateCells();
+                Sudoku.updateCandidates();
+                this.updateCandidatesAsSet(this.hintBar.currentHint.result.cell, this.hintBar.currentHint.result.val);
+            }
+            if (this.hintBar.currentHint.result.updateCells) {
+                Sudoku.removeCandidatesFromCells(this.hintBar.currentHint.result.updateCells, this.hintBar.currentHint.result.removeCandidates, false);
+                Sudoku.updateCandidates();
+                this.updateCandidatesAsReject(this.hintBar.currentHint.result.updateCells, this.hintBar.currentHint.result.removeCandidates);
+            }
+        }
+        this.panel.node.active = true;
+        this.hintBar.hintApply();
+        this.updateSave(this.checkFinished());
+    },
 
     onHintButtonTouch: function (e) {
         if (this.menuWindow.active)
